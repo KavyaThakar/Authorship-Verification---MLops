@@ -1,0 +1,10 @@
+avg_word_len
+type_token_ratio
+avg_sentence_len
+comma_freq
+semicolon_freq
+punctuation_ratio
+uppercase_ratio
+digit_ratio
+flesch_reading_ease
+gunning_fog
