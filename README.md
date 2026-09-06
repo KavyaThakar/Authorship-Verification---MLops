@@ -1,28 +1,58 @@
-# Authorship Verification Project
+# Authorship Verification — MLOps Pipeline
 
-## Overview
-This project verifies whether two text documents are written by the same author using Machine Learning techniques.
+> **From Experiment to Endpoint: Tracked Model Training and API Deployment**
 
-## Technologies Used
-- Python
-- Google Colab
-- Scikit-learn
-- TF-IDF
-- Machine Learning Classifiers
+This project converts an existing **Authorship Verification** machine-learning model into a reproducible MLOps pipeline.
 
-## Dataset
-The dataset is hosted on Google Drive due to size constraints.
+The original model predicts whether two text samples were written by the **same author** or by **different authors**. The MLOps implementation adds experiment tracking with **MLflow**, model registration, a **FastAPI** inference service, input validation, and **Docker** containerization.
 
-📌 Dataset Link:
-https://drive.google.com/drive/folders/1XQyOjqzDlAjUeUI-JOs-lXrQ3tudu4Y6?usp=sharing
+---
 
-## How to Run
-1. Open `Authorship_Verification.ipynb` in Google Colab
-2. Download the dataset from the provided link
-3. Update dataset path if required
-4. Run all cells
+## 1. Project Overview
 
-## Output
-- Classification accuracy
-- Evaluation metrics
-- Model performance analysis
+### Problem
+
+Given two text samples:
+
+- `text1`
+- `text2`
+
+the system predicts whether they are likely to have been written by the same author.
+
+### MLOps Goal
+
+Instead of only training a model in a notebook, this project creates a complete workflow:
+
+```text
+Dataset
+   │
+   ▼
+Feature Extraction
+   │
+   ▼
+Model Training
+   │
+   ├──────────────► MLflow Parameters
+   ├──────────────► MLflow Metrics
+   └──────────────► MLflow Model Artifact
+                         │
+                         ▼
+                 Compare 7 Runs
+                         │
+                         ▼
+                 Select Best Model
+                         │
+                         ▼
+                MLflow Model Registry
+                         │
+                         ▼
+                    Model v1
+                         │
+                         ▼
+                    FastAPI API
+                         │
+                         ▼
+                     Docker
+                         │
+                         ▼
+                  /health + /predict
